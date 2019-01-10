@@ -1,0 +1,14 @@
+#!/bin/bash 
+
+source $HOME/bin/testSuite/configfile
+
+#LinuxMint, Ubuntu, anything that uses service
+if pgrep -x "apache2" >/dev/null 2>&1
+then 
+	. $BIN_DIR/stopApache
+fi
+if [ $(pidof /sbin/init) -eq 1 ]; then
+	sudo apache2ctl -f apache2.conf
+else 
+	sudo /usr/sbin/apache2ctl -f ~/bin/testSuite/apache2.conf
+fi

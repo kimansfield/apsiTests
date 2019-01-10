@@ -1,0 +1,12 @@
+#!/bin/bash 
+#
+source $HOME/bin/testSuite/configfile
+
+runCurl()
+{
+	curl --socks5-hostname ${CLIENT[0]}:1080 ${TARGET[0]}:80/$FILENAME > /tmp/ramdisk/blah
+}
+
+runCurl
+
+

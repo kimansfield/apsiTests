@@ -1,0 +1,2 @@
+#!/bin/bash
+jq 'def hd2ms: (. | (split(".")[0] + "Z") | fromdate * 1000) + (. | split(".")[1] | split("-")[0] | tonumber); (.log.pages[0].startedDateTime | hd2ms) as $st | [.log.entries[]] | map((.startedDateTime | hd2ms) + .time) | max - $st' < $1.har

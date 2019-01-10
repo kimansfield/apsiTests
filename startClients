@@ -1,0 +1,25 @@
+#!/bin/bash 
+#
+source $HOME/bin/testSuite/configfile
+
+runClients()
+{
+	cd $APSI_DIR
+	build/apsiproxy/apsiproxy -c -i 172.31.2.219 -f $1 #-l client.csv 
+}
+
+config=8192
+socksport=1080
+
+for i in {1..10};
+do
+byobu new-window 
+#perl -pi -e "s/port = .*/port = $port/g" client.cfg
+#perl -pi -e "s/socksPort = .*/socksPort = $socksPort/g" client.cfg
+sleep .25
+runClients $config >/dev/null 2>&1 &
+curl -x socks5://localhost:$socksport 172.31.2.219:80/random1000 > /dev/null
+let config=config+1
+#let port=port+1
+let socksport=socksport+1
+done

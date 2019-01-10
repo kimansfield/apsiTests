@@ -1,0 +1,46 @@
+#!/bin/bash                                                                     
+declare -a symbols=(3 8 13 25)
+declare -a symbolSize=(500 1000 1400)
+declare -a trial=(1 2 3 4 5 6 7 8)                                              
+for x in ${symbolSize[*]}; do                                                   
+    for y in ${symbols[*]}; do                                                  
+        for z in ${trial[*]}; do
+			#This chunk of code will output the Block Utilization
+			grep -e 'outBlocks' serverlog_s${y}_ss${x}_trial${z}.log > blockfile
+            sed 's/^.\{28\}//' blockfile > blockfile1                           
+			grep -Eo '[0-9]{1,10}' blockfile1 > blockfile2                     
+			val=$((${y} * ${x}))                                                
+			awk '{ sum += $1 } END { print sum *= '$val' }' blockfile2 > blocksum${y}_${x}            
+			#cat blocksum${y}_${x}                                              
+			sleep .2    
+			grep -e 'buffer' serverlog_s${y}_ss${x}_trial${z}.log > bufferfile
+			sed 's/^.\{28\}//' bufferfile > bufferfile1                         
+			cut -d\; -f1 bufferfile1 > bufferfile2                              
+         	grep -Eo '[0-9]{1,10}' bufferfile2 > bufferfile3                    
+     		awk '{sum += $1 } END { print sum }' bufferfile3 > buffersum${y}_${x}
+			#paste buffersum${y}_${x} blocksum${y}_${x} | awk '{print $1 / $2}'                                                       
+			#This block of code will output the TTFB as recorded by the proxy
+			 sleep .2                                                           
+   			 grep -e 'udp' serverlog_s${y}_ss${x}_trial${z}.log > udpfile        
+	   		 cut -d\; -f2 udpfile > udpfile1                                     
+		     grep -Eo '[0-9]{1,10}' udpfile1 > udpfile2                          
+			 awk '{sum += $1 } END { print sum }' udpfile2 > udpsum${y}_${x}     
+			 echo "symbols = ${y}, symbolSize = ${x}, trial = ${z}"              
+			 paste blocksum${y}_${x} udpsum${y}_${x} | awk '{print $2 - $1}'     
+			# grep -e 'data' clientlog_s${y}_ss${x}_trial${z}.log | head -1 > testf1
+			# sed 's/^.\{38\}//' testf1 >testf2
+ 			# grep -Eo '[0-9]{1,10}' testf2      
+ 			# cut -f1 -d " " serverlog_s${y}_ss${x}_trial${z}.log > s1_${y}_${x}_${z}
+			# echo "serverlog_s${y}_ss${x}_trial${z}.log"
+			# sort s1_${y}_${x}_${z} > s2_${y}_${x}_${z}
+			# diff s1_${y}_${x}_${z} s2_${y}_${x}_${z}
+			# cut -f1 -d " " clientlog_s${y}_ss${x}_trial${z}.log > c1_${y}_${x}_${z}
+			# echo "clientlog_s${y}_ss${x}_trial${z}.log"
+			# sort c1_${y}_${x}_${z} > c2_${y}_${x}_${z}
+			# diff c1_${y}_${x}_${z} c2_${y}_${x}_${z}
+        done                                                                    
+    done                                                                        
+done                                                                            
+#rm udp*
+#rm buffer*
+#rm block* 

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+source $HOME/bin/testSuite/configfile
+
+#HOST
+sendLogs()
+{
+	#Will probably want to create $MASTER_USER $MASTER_HOST?
+	ssh alec@workMachine mkdir -p $BIN_DIR/Logs/$HOST
+	rsync -v -e ssh $USER$1:$APSI_DIR/\*logging $BIN_DIR/Logs/$HOST/$COUNT/
+	rsync -v -e ssh $USER$1:$APSI_DIR/\*.csv $BIN_DIR/Logs/$HOST/$COUNT/
+	rsync -v -e ssh $USER$1:$BIN_DIR/$MD5SUM $BIN_DIR/
+	
+}
+
+#I need to set HOST as an environmental variable and not a shell variable.. how?
+for trial in {1..1};
+do
+	rExec ${SERVER[0]} runServer &
+	rExec ${CLIENT[0]} runClient &
+	sleep .5
+	rExec ${SOURCE[0]} runCurl #>/dev/null 2>&1
+
+	#HOW TO GET THIS SHIT OUT OF "RUN SCRIPT"?
+	wait $!
+	sendLogs ${SERVER[0]} >/dev/null 2>&1
+	sendLogs ${CLIENT[0]} >/dev/null 2>&1
+	md5check=`md5sum $BIN_DIR/blah | awk '{print $1}'`
+	echo $md5check > $BIN_DIR/blahcmp
+	cmp blahcmp targetMD5Sum
+	echo "Done with run:" $trial
+	cleanup
+	wait
+	COUNT=$((COUNT+1))
+done
+ssh $USER${TARGET[0]} -t $BIN_DIR/./stopApache

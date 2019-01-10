@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source $HOME/bin/testSuite/configfile
+
+killall nc curl apsiproxy
+cd $APSI_DIR
+echo $PWD
+rm *.csv *logging

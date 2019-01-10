@@ -1,0 +1,9 @@
+$!/system/bin/sh
+
+runNetcat()
+{
+file=/data/local/tmp/random1MB
+
+{ echo -ne "HTTP/1.0 200 OK\r\nContent-Length: $(wc -c < $file)\r\n\r\n"; cat $file; } | ./busybox nc -l -p 8080
+}
+runNetcat

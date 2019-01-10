@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo tc qdisc del dev ifb0 root
+sudo tc qdisc del dev eth0 root
+sudo tc qdisc del dev lo root
+sudo tc qdisc del dev wlan0 root

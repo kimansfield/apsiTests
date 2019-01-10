@@ -1,0 +1,22 @@
+#!/bin/bash 
+#
+source $HOME/bin/testSuite/configfile
+
+runNetcat()
+{
+file=~/.bashrc #$TEST_DIR/$FILENAME
+#if pgrep "nc" > /dev/null
+#then
+#    echo "nc running"    
+#    killall -9 nc
+#else
+#    echo "nc not running"
+#fi
+{ echo -ne "HTTP/1.0 200 OK\r\nContent-Length: $(wc -c < $file)\r\n\r\n"; cat $file; } | nc -v -l 8080
+##                1G          5G            2G
+#SIZE=104857600 #2097152000  #2147483648
+
+#{ echo -ne "HTTP/1.0 200 OK\r\nContent-Length: $SIZE\r\n\r\n"; dd if=/dev/urandom bs=1024 count=$(( $SIZE / 1024 )); } | nc -v -l 8080 
+}
+
+runNetcat

@@ -1,0 +1,13 @@
+#!/system/bin/sh
+
+cd /data/local/tmp
+arr=(www.google.com https://ctrlalt.io https://openwrt.org https://superuser.com https://askubuntu.com https://git-scm.com www.nirsoft.net)
+while true;
+do
+    for i in ${!arr[*]} 
+    do
+        ./curl -k ${arr[i]} > /dev/null
+        echo ${arr[i]}
+    done
+    sleep $(( ( RANDOM % 300 )  + 1 ));
+done

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source $HOME/bin/testSuite/configfile
+
+dd if=/dev/urandom of=$FILENAME bs=1024 count=1048576

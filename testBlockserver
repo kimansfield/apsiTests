@@ -1,0 +1,27 @@
+#!/bin/bash
+
+declare -a symbols=(3 8 13 25)
+declare -a symbolSize=(500 1000 1400)
+control_c() {
+echo "caught"
+killall apsiproxy
+}
+trap control_c SIGINT
+
+for x in ${symbolSize[*]}; do
+	for y in ${symbols[*]}; do
+		perl -pi -e "s/symbols = .*/symbols = ${y}/g" apsiserver.cfg
+		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" apsiserver.cfg
+		sleep 1 
+		echo "symbols: ${y} symbolSize: ${x}"
+		for i in {1..8}; do
+		echo "Trial ${i}"
+		build/apsiproxy/apsiproxy -s -f apsiserver.cfg 
+		echo "Press [ENTER] to continue..."
+		read -p "$*"
+		mv serverlog serverlog_s${y}_ss${x}_trial${i}.log
+#		mv ~/Downloads/Archive* har_s${y}_ss${x}_trial${i}.har
+		sleep 1
+		done
+	done	
+done

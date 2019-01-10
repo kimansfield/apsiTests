@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source $HOME/bin/testSuite/configfile
+COUNT=0
+PORT=8192
+
+runServers()
+{
+	cd $APSI_DIR
+	build/apsiproxy/apsiproxy -s -p $PORT
+}
+
+echo "How many server's do you want to start?"
+read N
+
+while [ $COUNT -lt $N ];
+do
+byobu new-window
+runServers &
+let COUNT=COUNT+1
+let PORT=PORT+1
+done
+
+paplay /usr/share/sounds/LinuxMint/stereo/desktop-logout.ogg 

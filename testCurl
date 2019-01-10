@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for i in {1..10}; do
+	for j in {1..10}; do 
+		curl --socks5-hostname $1:1080 http://xmission.com -w "TTFB: %{time_starttransfer} \n" -H 'Cache-Control: max-age=0, must-revalidate' -o xmission${i}_${j}.html > curl${i}_${j}
+	done
+	#sleep 60
+done

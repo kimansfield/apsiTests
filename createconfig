@@ -1,0 +1,13 @@
+#!/bin/bash
+
+port=8192
+socksPort=1080
+
+for i in {1..10};
+do
+perl -pi -e "s/port = .*/port = $port/g" client.cfg
+perl -pi -e "s/socksPort = .*/socksPort = $socksPort/g" client.cfg
+cp client.cfg $port
+let port=port+1
+let socksPort=socksPort+1
+done

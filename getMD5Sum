@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source $HOME/bin/testSuite/configfile
+
+md5=`md5sum $BIN_DIR/testSuite/$FILENAME | awk '{ print $1 }'`
+echo $md5 > $BIN_DIR/testSuite/$MD5SUM

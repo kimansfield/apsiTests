@@ -1,0 +1,18 @@
+#!/bin/bash
+
+source $HOME/bin/testSuite/configfile
+
+declare -a symbols=(3 8 13 25)
+declare -a symbolSize=(500 1000 1400)
+cd $APSI_DIR
+for x in ${symbolSize[*]}; do
+	for y in ${symbols[*]}; do
+		perl -pi -e "s/symbols = .*/symbols = ${y}/g" apsi.cfg
+		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" apsi.cfg
+		echo "symbols: ${y} symbolSize: ${x}"
+		echo "Press [ENTER] to continue..."
+		read -p "$*"
+		#mv serverlog serverlog_s${y}_ss${x}.log
+		rExec
+	done	
+done

@@ -1,0 +1,22 @@
+#!/bin/bash 
+#
+source $HOME/bin/testSuite/configfile
+
+runSample() {
+    for trial in {1..1};
+    do
+        ./runServer &
+        ./runClient &
+        sleep .5
+        ./runCurl 
+        
+        wait $!
+        md5check=`md5sum /tmp/ramdisk/blah | awk '{print $1}'`
+        echo $md5check > $TEST_DIR/sourceMD5Sum
+        cmp sourceMD5Sum targetMD5Sum
+        echo "Done with run:" $trial
+
+    done
+}
+
+runSample

@@ -1,0 +1,44 @@
+#!/bin/bash 
+#
+#
+
+source $HOME/bin/testSuite/configfile
+
+#HOST, PROGRAM for execution
+rExec()
+{
+	#ssh $USER$HOST < $1
+	ssh $USER$1 $BIN_DIR/./$2
+}
+
+test_setup()
+{
+	rsync -a ../testSuite $USER$1:$HOME/bin
+	ssh alec@workMachine rm -rf $BIN_DIR/Logs/*/
+	echo -en "*** Setting up test ***\n"
+	./createFile
+#	ssh $USER${TARGET[0]} -t $BIN_DIR/./runApache
+}
+
+#How to have cleanup send rkillall to remote machine?
+cleanup()
+{
+	ssh $USER${SERVER[0]} $TEST_DIR/./runKillAll >/dev/null 2>&1 &
+	ssh $USER${CLIENT[0]} $TEST_DIR/./runKillAll >/dev/null 2>&1 &
+	return $?
+}
+
+control_c()
+#run if user CTRL+C
+{
+echo -en "\n*** CATCHING ASSERT ***\n"
+cleanup
+exit $?
+}
+
+trap control_c SIGINT
+#test_setup baluchitherium
+wait
+export -f rExec
+export -f cleanup
+. $TEST_DIR/subTest

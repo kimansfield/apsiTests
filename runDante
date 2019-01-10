@@ -1,0 +1,5 @@
+#change directory to dante-1.4.2/sockd
+
+#then ./sockd -f /etc/danted.conf -D
+#then pkill sockd to stop.
+

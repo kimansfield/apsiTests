@@ -1,0 +1,16 @@
+#!/bin/bash
+declare -a symbols=(3 8 13 25)                                                
+declare -a symbolSize=(500 1000 1400)                                         
+declare -a trial=(1 2 3 4 5 6 7 8)                                              
+for x in ${symbolSize[*]}; do                                                   
+    for y in ${symbols[*]}; do                                                  
+        for z in ${trial[*]}; do
+		cat har_s${y}_ss${x}_trial${z}.har | \
+			jq '.log.entries | map( [ .startedDateTime, .time, .response.content.size, .response.bodySize, .response.headersSize, .response.status, .response.statusText ] ) | .[] | @csv' -r  >> csv_s${y}_ss${x}_trial${z}.csv
+		awk -F"," '{print;sum+=$4 }END{print "sum " sum}' csv_s${y}_ss${x}_trial${z}.csv | grep sum
+		done
+	done
+done
+
+
+

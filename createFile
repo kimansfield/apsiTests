@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source $HOME/bin/testSuite/configfile
+
+if [ ! -f $BIN_DIR/$FILENAME ];
+then
+	ssh $USER${TARGET[0]} $BIN_DIR/./ddFile
+	ssh $USER${TARGET[0]} $BIN_DIR/./getMD5Sum
+elif [ ! -f $BIN_DIR/$MD5SUM ];
+then
+	ssh $USER${TARGET[0]} $BIN_DIR/./getMD5Sum
+else
+	echo -ne "*** File and MD5Sum are current ***\n"
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash 
+#
+#
+
+source $HOME/bin/testSuite/configfile
+
+cleanup()
+{
+	ssh $USER${SERVER[0]} $BIN_DIR/./runKillAll >/dev/null 2>&1 &
+	ssh $USER${CLIENT[0]} $BIN_DIR/./runKillAll >/dev/null 2>&1 &
+	return $?
+}
+
+cleanup

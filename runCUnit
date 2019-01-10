@@ -1,0 +1,2 @@
+ 9985  gcc -Wall -c max.c
+ 9986  gcc -Wall -L/usr/local/lib -o max_test max_test.c max.o -lcunit
