@@ -1,12 +1,17 @@
 #!/bin/bash 
 #
-source $HOME/bin/testSuite/configfile
+source $HOME/APSITest/configfile
 
 runClients()
 {
+	echo $1
+	echo $APSI_DIR
+
 	cd $APSI_DIR
-	build/apsiproxy/apsiproxy -c -i 172.31.2.219 -f $1 #-l client.csv 
+	build/$PLATFORM/apsiproxy/apsiproxy -c -i 172.31.2.219 -f $1 #-l client.csv 
 }
+
+
 
 config=8192
 socksport=1080
