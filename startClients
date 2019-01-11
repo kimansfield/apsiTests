@@ -4,11 +4,9 @@ source $HOME/APSITest/configfile
 
 runClients()
 {
-	echo $1
-	echo $APSI_DIR
 
 	cd $APSI_DIR
-	build/$PLATFORM/apsiproxy/apsiproxy -c -i 172.31.2.219 -f $1 #-l client.csv 
+	build/$PLATFORM/apsiproxy/apsiproxy -c -p $1 #-l client.csv 
 }
 
 
@@ -22,6 +20,7 @@ byobu new-window
 #perl -pi -e "s/port = .*/port = $port/g" client.cfg
 #perl -pi -e "s/socksPort = .*/socksPort = $socksPort/g" client.cfg
 sleep .25
+echo "Running apsiproxy client with port $config"
 runClients $config >/dev/null 2>&1 &
 curl -x socks5://localhost:$socksport 172.31.2.219:80/random1000 > /dev/null
 let config=config+1
