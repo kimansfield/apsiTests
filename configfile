@@ -6,18 +6,18 @@ TARGET=(workMachine)
 #----------------------------------
 CLIENT=(workMachine)
 SOURCE=(workMachine)
-PLATFORM="linux"
+PLATFORM="amd64-linux-sysv-dbg"
 EC2_PUBLIC="localhost"
 EC2_LOCAL="localhost"
 MD5SUM="targetMD5Sum"
 FILENAME="random1GB"
 FILENAMEDEST="random1GB"
 #directory for apsi
-APSI_DIR="$HOME/apsi/WorkingGit"
-USER="alec@"
+APSI_DIR="$HOME/APSI/"
+USER="lester@"
 #Home for bin files. Is this necessary? Do I want a / at the end and then change all others to not take a /? #FIXME
-BIN_DIR="$HOME/bin"
-TEST_DIR="$HOME/bin/testSuite"
+#BIN_DIR="$HOME/bin"
+TEST_DIR="$HOME/APSITest"
 #This will be for the config file to be used with -f. How to handle separate files?
 SERVER_CONFIG=$TEST_DIR/server.cfg
 CLIENT_CONFIG=$TEST_DIR/client.cfg
