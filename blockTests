@@ -1,7 +1,8 @@
 #!/bin/bash
 
+#source $HOME/bin/testSuite/configfile
 
-source $HOME/bin/APSITest/configfile
+source ./configfile
 
 
 declare -a symbols=(3 8 13 25)
@@ -9,9 +10,11 @@ declare -a symbolSize=(500 1000 1400)
 cd $APSI_DIR
 for x in ${symbolSize[*]}; do
 	for y in ${symbols[*]}; do
-		perl -pi -e "s/symbols = .*/symbols = ${y}/g" $HOME/bin/APSITest/apsi.cfg
-		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" $HOME/bin/APSITest/apsi.cfg
-
+      #edit the file to change the symbols
+		perl -pi -e "s/symbols = .*/symbols = ${y}/g" $APSI_TESTDIR/apsi.cfg
+      #edit the file to change the symbolSize
+		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" $APSI_TESTDIR/apsi.cfg
+      #for these changes to take effect the code has to be recompiled
 		echo "symbols: ${y} symbolSize: ${x}"
 		echo "Press [ENTER] to continue..."
 		read -p "$*"

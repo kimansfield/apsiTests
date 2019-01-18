@@ -14,6 +14,7 @@ FILENAME="random1GB"
 FILENAMEDEST="random1GB"
 #directory for apsi
 APSI_DIR="$HOME/APSI/"
+APSI_TESTDIR="$HOME/apsiTests/"
 USER="lester@"
 #Home for bin files. Is this necessary? Do I want a / at the end and then change all others to not take a /? #FIXME
 BIN_DIR="$HOME/bin"
