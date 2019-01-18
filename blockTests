@@ -1,6 +1,8 @@
 #!/bin/bash
 
+
 source $HOME/bin/APSITest/configfile
+
 
 declare -a symbols=(3 8 13 25)
 declare -a symbolSize=(500 1000 1400)
@@ -9,6 +11,7 @@ for x in ${symbolSize[*]}; do
 	for y in ${symbols[*]}; do
 		perl -pi -e "s/symbols = .*/symbols = ${y}/g" $HOME/bin/APSITest/apsi.cfg
 		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" $HOME/bin/APSITest/apsi.cfg
+
 		echo "symbols: ${y} symbolSize: ${x}"
 		echo "Press [ENTER] to continue..."
 		read -p "$*"
