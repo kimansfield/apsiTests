@@ -1,6 +1,6 @@
 #!/bin/bash 
 #
-source $HOME/APSITest/configfile
+source $HOME/bin/APSITest/configfile
 
 runClients()
 {

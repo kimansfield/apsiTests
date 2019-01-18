@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/bin/testSuite/configfile
+source $HOME/bin/APSITest/configfile
 
 if [ ! -f $BIN_DIR/$FILENAME ];
 then

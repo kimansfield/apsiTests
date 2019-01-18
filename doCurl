@@ -4,6 +4,6 @@ port=1080
 
 for i in {1..10};
 do 
-time curl -x socks5://localhost:$port 172.31.2.219:80/random1000 > curl.$i.log &
+time curl -x socks5://localhost:$port http://192.168.254.103/files/sample.txt > curl.$i.log &
 let port=port+1
 done

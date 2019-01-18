@@ -16,8 +16,8 @@ FILENAMEDEST="random1GB"
 APSI_DIR="$HOME/APSI/"
 USER="lester@"
 #Home for bin files. Is this necessary? Do I want a / at the end and then change all others to not take a /? #FIXME
-#BIN_DIR="$HOME/bin"
-TEST_DIR="$HOME/APSITest"
+BIN_DIR="$HOME/bin"
+TEST_DIR="$BIN_DIR/APSITest"
 #This will be for the config file to be used with -f. How to handle separate files?
 SERVER_CONFIG=$TEST_DIR/server.cfg
 CLIENT_CONFIG=$TEST_DIR/client.cfg
