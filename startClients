@@ -1,9 +1,11 @@
 #!/bin/bash 
 #
-source $HOME/bin/APSITest/configfile
+#source $HOME/bin/APSITest/configfile
+source ./configfile
 
 runClients()
 {
+echo "runClients start"
 
 	cd $APSI_DIR
 	build/$PLATFORM/apsiproxy/apsiproxy -c -p $1 #-l client.csv 
@@ -14,16 +16,23 @@ runClients()
 config=8192
 socksport=1080
 
-for i in {1..10};
-do
+#for i in {1..10};
+#do
+echo "Start byobu"
 byobu new-window 
 #perl -pi -e "s/port = .*/port = $port/g" client.cfg
 #perl -pi -e "s/socksPort = .*/socksPort = $socksPort/g" client.cfg
+echo "Sleep a bit"
 sleep .25
 echo "Running apsiproxy client with port $config"
+echo "$PLATFORM"
+echo "$APSI_DIR"
 runClients $config >/dev/null 2>&1 &
-curl -x socks5://localhost:$socksport 172.31.2.219:80/random1000 > /dev/null
-let config=config+1
+#for i in {1..10};
+#do
+curl -x socks5://localhost:$socksport $WEBSERVER/$LOCATION/$FILENAME > /dev/null
+#192.168.0.5:80/person/sprinkler/random1GB > /dev/null
+#let config=config+1
 #let port=port+1
-let socksport=socksport+1
-done
+#let socksport=socksport+1
+#done
