@@ -1,6 +1,11 @@
 #!/bin/bash
 
-ssh -T alec@baluchitherium <<'ENDSSH'
+source ./configfile
+
+echo "Server:"
+echo $USER$SERVER
+
+ssh -T $USER$SERVER <<'ENDSSH'
 su
-sudo tc qdisc del dev eth0 root
+sudo tc qdisc del dev $ETHERNET root
 ENDSSH
