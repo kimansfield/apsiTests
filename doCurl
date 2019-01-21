@@ -1,11 +1,14 @@
 #!/bin/bash
 
+source ./configfile
+
 port=1080
 
-for i in {1..10};
-do 
-
-time curl -x socks5://localhost:$port http://192.168.254.103/files/sample.txt > curl.$i.log &
+#for i in {1..10};
+#do 
+echo "Downloading:"
+echo http://$WEBSERVER/$LOCATION/$FILENAME
+time curl -x socks5://localhost:$port http://$WEBSERVER/$LOCATION/$FILENAME > curl.$i.log &
 #let port=port+1
 
-done
+#done
