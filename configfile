@@ -2,9 +2,9 @@
 
 #Array declaration with hosts.
 SERVER=(workMachine)
-TARGET=(workMachine)
+TARGET=(192.168.0.5)
 #----------------------------------
-CLIENT=(workMachine)
+CLIENT=(localhost)
 SOURCE=(workMachine)
 PLATFORM="amd64-linux-sysv-dbg"
 EC2_PUBLIC="localhost"
