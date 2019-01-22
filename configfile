@@ -13,9 +13,9 @@ if [ "${KIMMACHINE:=}" ]; then
 else
   #Array declaration with hosts.
   SERVER=(lester-VirtualBox)
-  TARGET=(lester-VirtualBox)
+  TARGET=("192.168.254.103") #,lester-VirtualBox)
   #----------------------------------
-  CLIENT=(lester-VirtualBox)
+  CLIENT=(localhost) #, lester-VirtualBox)
   SOURCE=(lester-VirtualBox)
 fi
 
