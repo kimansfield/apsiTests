@@ -1,14 +1,13 @@
 #!/bin/bash
 
-
-#KIMMACHINE
+KIMMACHINE="1"
 
 if [ "${KIMMACHINE:=}" ]; then
   #Array declaration with hosts.
   SERVER=(workMachine)
-  TARGET=(workMachine)
+  TARGET=(192.168.0.5)
   #----------------------------------
-  CLIENT=(workMachine)
+  CLIENT=(localhost)
   SOURCE=(workMachine)
 else
   #Array declaration with hosts.
@@ -19,24 +18,16 @@ else
   SOURCE=(lester-VirtualBox)
 fi
 
-
 PLATFORM="amd64-linux-sysv-dbg"
 EC2_PUBLIC="localhost"
 EC2_LOCAL="localhost"
 MD5SUM="targetMD5Sum"
 # the next 3 variables are used in startClient
 # I think they are self explanatory
-if [ "${KIMMACHINE:-}" ]; then
-  WEBSERVER="192.168.0.5:80";
-  LOCATION="person/sprinkler";
-else
-  WEBSERVER="192.168.254.103";
-  LOCATION="files";
-fi
-
+WEBSERVER="192.168.0.5:80"
+LOCATION="person/sprinkler"
 FILENAME="random1GB"
 FILENAMEDEST="random1GB"
-
 #directory for apsi
 APSI_DIR="$HOME/APSI/"
 #directory or the apsi test directory if you do a clone
@@ -52,6 +43,4 @@ CLIENT_CONFIG=$TEST_DIR/client.cfg
 #May want a config file for Traffic Control
 #TC="$BIN_DIR/rtc"
 COUNT=0
-
-ETHERNET=enp0s3
 
