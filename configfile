@@ -1,20 +1,13 @@
 #!/bin/bash
 
-#Array declaration with hosts.
-SERVER=(workMachine)
-TARGET=(192.168.0.5)
-#----------------------------------
-CLIENT=(localhost)
-SOURCE=(workMachine)
-
-#KIMMACHINE
+KIMMACHINE="1"
 
 if [ "${KIMMACHINE:=}" ]; then
   #Array declaration with hosts.
   SERVER=(workMachine)
-  TARGET=(workMachine)
+  TARGET=(192.168.0.5)
   #----------------------------------
-  CLIENT=(workMachine)
+  CLIENT=(localhost)
   SOURCE=(workMachine)
 else
   #Array declaration with hosts.
