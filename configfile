@@ -6,6 +6,25 @@ TARGET=(192.168.0.5)
 #----------------------------------
 CLIENT=(localhost)
 SOURCE=(workMachine)
+
+#KIMMACHINE
+
+if [ "${KIMMACHINE:=}" ]; then
+  #Array declaration with hosts.
+  SERVER=(workMachine)
+  TARGET=(workMachine)
+  #----------------------------------
+  CLIENT=(workMachine)
+  SOURCE=(workMachine)
+else
+  #Array declaration with hosts.
+  SERVER=(lester-VirtualBox)
+  TARGET=("192.168.254.103") #,lester-VirtualBox)
+  #----------------------------------
+  CLIENT=(localhost) #, lester-VirtualBox)
+  SOURCE=(lester-VirtualBox)
+fi
+
 PLATFORM="amd64-linux-sysv-dbg"
 EC2_PUBLIC="localhost"
 EC2_LOCAL="localhost"
