@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/bin/testSuite/configfile
+source ./configfile
 
-md5=`md5sum $BIN_DIR/testSuite/$FILENAME | awk '{ print $1 }'`
-echo $md5 > $BIN_DIR/testSuite/$MD5SUM
+md5=`md5sum $APSI_TESTDIR$FILENAME | awk '{ print $1 }'`
+echo $md5 > $APSI_TESTDIR/$MD5SUM
