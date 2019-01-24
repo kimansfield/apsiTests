@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#source $HOME/bin/testSuite/configfile
-source ./configfile
+#source /configfile
+source $HOME/apsiTests/configfile
 
 echo "$FILENAME"
 
