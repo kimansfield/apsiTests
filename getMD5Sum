@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./configfile
+source $HOME/apsiTests/configfile
 
-md5=`md5sum $APSI_TESTDIR$FILENAME | awk '{ print $1 }'`
+md5=`md5sum $HOME/$FILENAME | awk '{ print $1 }'`
 echo $md5 > $APSI_TESTDIR/$MD5SUM
