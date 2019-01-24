@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KIMMACHINE="1"
+#KIMMACHINE="1"
 
 if [ "${KIMMACHINE:=}" ]; then
   #Array declaration with hosts.
@@ -12,7 +12,7 @@ if [ "${KIMMACHINE:=}" ]; then
 else
   #Array declaration with hosts.
   SERVER=(lester-VirtualBox)
-  TARGET=("192.168.254.103") #,lester-VirtualBox)
+  TARGET=("192.168.254.103" "127.0.0.1")
   #----------------------------------
   CLIENT=(localhost) #, lester-VirtualBox)
   SOURCE=(lester-VirtualBox)
