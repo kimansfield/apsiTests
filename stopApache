@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-source $HOME/bin/testSuite/configfile
+source ./configfile
 
 sudo service apache2 stop >/dev/null 2>&1
 sudo apache2ctl stop >/dev/null 2>&1

@@ -1,6 +1,6 @@
 #!/bin/bash 
 #
-source $HOME/bin/testSuite/configfile
+source ./configfile
 
 runNetcat()
 {
