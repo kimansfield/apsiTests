@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source $HOME/bin/testSuite/configfile
+#source $HOME/bin/testSuite/configfile
+source $HOME/apsiTests/configfile
 
 killall nc curl apsiproxy
 cd $APSI_DIR

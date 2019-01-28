@@ -4,11 +4,12 @@
 
 if [ "${KIMMACHINE:=}" ]; then
   #Array declaration with hosts.
-  SERVER=(workMachine)
+  SERVER=(localhost)
   TARGET=(192.168.0.5)
   #----------------------------------
   CLIENT=(localhost)
   SOURCE=(workMachine)
+  USER="kmansfie@"
 else
   #Array declaration with hosts.
   SERVER=(lester-VirtualBox)
@@ -16,6 +17,7 @@ else
   #----------------------------------
   CLIENT=(localhost) #, lester-VirtualBox)
   SOURCE=(lester-VirtualBox)
+  USER="lester@"
 fi
 
 PLATFORM="amd64-linux-sysv-dbg"
@@ -33,7 +35,6 @@ APSI_DIR="$HOME/APSI/"
 #directory or the apsi test directory if you do a clone
 # of the test repository it is apsiTests
 APSI_TESTDIR="$HOME/apsiTests/"
-USER="lester@"
 #Home for bin files. Is this necessary? Do I want a / at the end and then change all others to not take a /? #FIXME
 BIN_DIR="$HOME"
 TEST_DIR="$BIN_DIR/apsiTests"
