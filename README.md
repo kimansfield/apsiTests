@@ -129,4 +129,12 @@ User can initially test this by going to web browser and access the localhost:80
 ```bash
 ./runNetcat
 ```
-
+### runTest
+#### Description
+This script defines the needed function used by the subTest script.
+It defines here the rExec, test_setup, cleanup and control_c functions.
+Then it exports the rExec and cleanup function so that it can be see in subTest script. After defining and exporting function it will run the subTest script.
+#### Usage
+```bash
+./runTest
+```
