@@ -2,19 +2,22 @@
 #
 #
 
-source $HOME/bin/testSuite/configfile
+source ./configfile
 
 #HOST, PROGRAM for execution
 rExec()
 {
+	echo "rExec: "
+	echo $1
+
 	#ssh $USER$HOST < $1
-	ssh $USER$1 $BIN_DIR/./$2
+	ssh $USER$1 $APSI_TESTDIR/./$2
 }
 
 test_setup()
 {
 	rsync -a ../testSuite $USER$1:$HOME/bin
-	ssh "$USER"workMachine rm -rf $BIN_DIR/Logs/*/
+	ssh $USER$SERVER rm -rf $BIN_DIR/Logs/*/
 	echo -en "*** Setting up test ***\n"
 	./createFile
 #	ssh $USER${TARGET[0]} -t $BIN_DIR/./runApache
