@@ -12,16 +12,16 @@ if [ "${KIMMACHINE:=}" ]; then
   USER="kmansfie@"
 else
   #Array declaration with hosts.
-  SERVER=(lester-VirtualBox)
-  TARGET=("192.168.254.103" "127.0.0.1")
+  SERVER=("192.168.254.139")
+  TARGET=("192.168.254.139" "127.0.0.1")
   #----------------------------------
   CLIENT=(localhost) #, lester-VirtualBox)
-  SOURCE=(lester-VirtualBox)
+  SOURCE=(localhost)
   USER="lester@"
 fi
 
 PLATFORM="amd64-linux-sysv-dbg"
-EC2_PUBLIC="localhost"
+EC2_PUBLIC=${TARGET[0]}
 EC2_LOCAL="localhost"
 MD5SUM="targetMD5Sum"
 # the next 3 variables are used in startClient
