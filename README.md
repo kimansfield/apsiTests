@@ -107,4 +107,26 @@ It will run apache2ctl with apache2.conf as configuration file that is located a
 ```bash
 ./runApache
 ```
+### 
+### runNetcat
+#### Description
+The first process it does is echo the following:
+```bash
+HTTP/1.0 200 OK
+Content-Length: 3854
+```
+Where 3854 is the result of printing of number of bytes in ~/.bashrc content. This is the command it used:
+```bash
+$(wc -c < ~/.bashrc)
+```
+Then it will read the content of ~/.bashrc using cat command.
+The last thing it does is run the netcat command and listen at port 8080
+```bash
+nc -v -l 8080
+```
+User can initially test this by going to web browser and access the localhost:8080.
+#### Usage
+```bash
+./runNetcat
+```
 
