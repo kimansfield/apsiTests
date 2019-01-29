@@ -100,4 +100,11 @@ It will create a random 1GB file in the $BIN_DIR. It will first check if the $FI
 ```bash
 ./createFile
 ````
+### runApache
+#### Description
+It will run apache2ctl with apache2.conf as configuration file that is located at the $APSITEST_DIR. It will first test if apache2 is running or on the list of the processes. If it is actively run it will stop the process. Then it will check if the pid of /sbin/init is equal to 1. If it is true it will access directly the apache2ctl. If it is not true it will access to /usr/sbin/apache2ctl.
+#### Usage
+```bash
+./runApache
+```
 
