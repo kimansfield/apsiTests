@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/bin/testSuite/configfile
+source ./configfile
 
 #HOST
 sendLogs()
@@ -16,9 +16,12 @@ sendLogs()
 #I need to set HOST as an environmental variable and not a shell variable.. how?
 for trial in {1..1};
 do
+	echo "runServer..."
 	rExec ${SERVER[0]} runServer &
+	echo "runClient..."
 	rExec ${CLIENT[0]} runClient &
 	sleep .5
+	echo "runCurl..."
 	rExec ${SOURCE[0]} runCurl #>/dev/null 2>&1
 
 	#HOW TO GET THIS SHIT OUT OF "RUN SCRIPT"?
