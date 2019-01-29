@@ -3,7 +3,7 @@
 APSI Proxy Test-Suite are set of bash scripts used in testing the functionality of APSI Proxy
 
 ## Prerequisites
-+ Environment that run bash file
++ Environment that run bash file or shell script
 + Apache HTTP Server
 + Byobu
 + OpenSSH
@@ -93,3 +93,11 @@ CLIENT_CONFIG
 (e.g. CLIENT_CONFIG= $APSI_TESDIR/client.cfg)
 ```
 + It holds the location of the client configuration file of the APSI Proxy client.
+### createFile
+#### Description
+It will create a random 1GB file in the $BIN_DIR. It will first check if the $FILENAME exist in the $BIN_DIR. If it is not exist it will access the $TARGET machine through ssh and run the ddFile and getMD5Sum script.If the the $FILENAME exist it will check if the $MD5SUM is exist in the $BIN_DIR.If $MD5SUM does not exist it will access again the $TARGET machine through ssh and run the getMD5Sum script.
+#### Usage
+```bash
+./createFile
+````
+
