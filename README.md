@@ -9,7 +9,10 @@ APSI Proxy Test-Suite are set of bash scripts used in testing the functionality 
 + OpenSSH
 
 ## Test Scripts
+
+########################################################################
 ### configFile
+########################################################################
 This is a user custom file. User need to set his own parameter based on the setting of his local computer.
 User needs to set the following variables:
 ```bash
@@ -93,22 +96,30 @@ CLIENT_CONFIG
 (e.g. CLIENT_CONFIG= $APSI_TESDIR/client.cfg)
 ```
 + It holds the location of the client configuration file of the APSI Proxy client.
+########################################################################
+
+########################################################################
 ### createFile
+########################################################################
 #### Description
 It will create a random 1GB file in the $BIN_DIR. It will first check if the $FILENAME exist in the $BIN_DIR. If it is not exist it will access the $TARGET machine through ssh and run the ddFile and getMD5Sum script.If the the $FILENAME exist it will check if the $MD5SUM is exist in the $BIN_DIR.If $MD5SUM does not exist it will access again the $TARGET machine through ssh and run the getMD5Sum script.
 #### Usage
 ```bash
 ./createFile
 ````
+
+########################################################################
 ### runApache
+########################################################################
 #### Description
 It will run apache2ctl with apache2.conf as configuration file that is located at the $APSITEST_DIR. It will first test if apache2 is running or on the list of the processes. If it is actively run it will stop the process. Then it will check if the pid of /sbin/init is equal to 1. If it is true it will access directly the apache2ctl. If it is not true it will access to /usr/sbin/apache2ctl.
 #### Usage
 ```bash
 ./runApache
 ```
-### 
+########################################################################
 ### runNetcat
+########################################################################
 #### Description
 The first process it does is echo the following:
 ```bash
@@ -129,7 +140,10 @@ User can initially test this by going to web browser and access the localhost:80
 ```bash
 ./runNetcat
 ```
+
+########################################################################
 ### runTest
+########################################################################
 #### Description
 This script defines the needed function used by the subTest script.
 It defines here the rExec, test_setup, cleanup and control_c functions.
@@ -138,14 +152,20 @@ Then it exports the rExec and cleanup function so that it can be see in subTest 
 ```bash
 ./runTest
 ```
+
+########################################################################
 ### stoApache
+########################################################################
 #### Description
 Basically it will only do is to stop the apache2 service and apache2ctl
 ### Usage
 ```bash
 ./stopApache
 ```
+
+########################################################################
 ### testCleanup
+########################################################################
 #### Description
 This script calls or runs the runKillAll script in both client and server through ssh. 
 ### Usage
