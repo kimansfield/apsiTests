@@ -2,12 +2,14 @@
 #
 #
 
-source $HOME/bin/testSuite/configfile
+source $HOME/apsiTests/configfile
 
 cleanup()
 {
-	ssh $USER${SERVER[0]} $BIN_DIR/./runKillAll >/dev/null 2>&1 &
-	ssh $USER${CLIENT[0]} $BIN_DIR/./runKillAll >/dev/null 2>&1 &
+	echo "ssh $USER${SERVER[0]} $HOME/apsiTests/./runKillAll"
+	echo "ssh $USER${CLIENT[0]} $HOME/apsiTests/./runKillAll"
+	ssh $USER${SERVER[0]} $HOME/apsiTests/./runKillAll >/dev/null 2>&1 &
+	ssh $USER${CLIENT[0]} $HOME/apsiTests/./runKillAll >/dev/null 2>&1 &
 	return $?
 }
 
