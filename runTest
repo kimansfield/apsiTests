@@ -7,8 +7,8 @@ source ./configfile
 #HOST, PROGRAM for execution
 rExec()
 {
-	echo "rExec: "
-	echo $1
+	#echo "rExec: "
+	#echo $1
 
 	#ssh $USER$HOST < $1
 	ssh $USER$1 $APSI_TESTDIR/./$2
