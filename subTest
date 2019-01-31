@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./configfile
+source $HOME/apsiTests/configfile
 
 #HOST
 sendLogs()
@@ -16,12 +16,12 @@ sendLogs()
 #I need to set HOST as an environmental variable and not a shell variable.. how?
 for trial in {1..1};
 do
-	echo "runServer..."
+	#echo "runServer..."
 	rExec ${SERVER[0]} runServer &
-	echo "runClient..."
+	#echo "runClient..."
 	rExec ${CLIENT[0]} runClient &
 	sleep .5
-	echo "runCurl..."
+	#echo "runCurl..."
 	rExec ${SOURCE[0]} runCurl #>/dev/null 2>&1
 
 	#HOW TO GET THIS SHIT OUT OF "RUN SCRIPT"?
@@ -36,4 +36,4 @@ do
 	wait
 	COUNT=$((COUNT+1))
 done
-ssh $USER${TARGET[0]} -t $BIN_DIR/./stopApache
+ssh $USER${TARGET[0]} -t $APSITEST_DIR/./stopApache
