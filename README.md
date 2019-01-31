@@ -138,3 +138,17 @@ Then it exports the rExec and cleanup function so that it can be see in subTest 
 ```bash
 ./runTest
 ```
+### stoApache
+#### Description
+Basically it will only do is to stop the apache2 service and apache2ctl
+### Usage
+```bash
+./stopApache
+```
+### testCleanup
+#### Description
+This script calls or runs the runKillAll script in both client and server through ssh. 
+### Usage
+```bash
+./testCleanup
+```
