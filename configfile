@@ -1,11 +1,12 @@
 #!/bin/bash
 
-#KIMMACHINE="1"
+KIMMACHINE="1"
 
 if [ "${KIMMACHINE:=}" ]; then
   #Array declaration with hosts.
   SERVER=(localhost)
   TARGET=(192.168.0.5)
+  #TARGET=(192.168.0.168)
   #----------------------------------
   CLIENT=(localhost)
   SOURCE=(workMachine)
@@ -31,13 +32,13 @@ LOCATION="person/sprinkler"
 FILENAME="random1GB"
 FILENAMEDEST="random1GB"
 #directory for apsi
-APSI_DIR="$HOME/APSI/"
+APSI_DIR="$HOME/workspace/APSI/"
 #directory or the apsi test directory if you do a clone
 # of the test repository it is apsiTests
 APSI_TESTDIR="$HOME/apsiTests/"
 #Home for bin files. Is this necessary? Do I want a / at the end and then change all others to not take a /? #FIXME
 BIN_DIR="$HOME"
-TEST_DIR="$BIN_DIR/apsiTests"
+TEST_DIR="$BIN_DIR/workspace/apsiTests"
 #This will be for the config file to be used with -f. How to handle separate files?
 SERVER_CONFIG=$TEST_DIR/server.cfg
 CLIENT_CONFIG=$TEST_DIR/client.cfg
