@@ -12,7 +12,7 @@ file=~/.bashrc #$TEST_DIR/$FILENAME
 #else
 #    echo "nc not running"
 #fi
-{ echo -ne "HTTP/1.0 200 OK\r\nContent-Length: $(wc -c < $file)\r\n\r\n"; cat $file; } | nc -v -l 8080
+{ echo -ne "HTTP/1.0 200 OK\r\nContent-Length: $(wc -c < $file)\r\n\r\n"; cat $file; } | nc -v -l 8888
 ##                1G          5G            2G
 #SIZE=104857600 #2097152000  #2147483648
 
