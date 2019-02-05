@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KIMMACHINE="1"
+#KIMMACHINE="1"
 
 if [ "${KIMMACHINE:=}" ]; then
   #Array declaration with hosts.
