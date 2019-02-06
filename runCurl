@@ -7,7 +7,7 @@ runCurl()
 {
 	echo "Curl --socks5-hostname"
 	echo ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/$FILENAME
-	curl --socks5-hostname ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/smallfile > $HOME/temp #/tmp/ramdisk/blah
+	curl --socks5-hostname ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/smallfile > $HOME/tempFile #/tmp/ramdisk/blah
 }
 
 runCurl
