@@ -32,7 +32,7 @@ LOCATION="person/sprinkler"
 FILENAME="random1GB"
 FILENAMEDEST="random1GB"
 #directory for apsi
-APSI_DIR="$HOME/workspace/APSI/"
+APSI_DIR="$HOME/workspace/apsi/"
 #directory or the apsi test directory if you do a clone
 # of the test repository it is apsiTests
 APSI_TESTDIR="$HOME/apsiTests/"
