@@ -16,7 +16,7 @@ else
   SERVER=("192.168.254.139")
   TARGET=("192.168.254.139" "127.0.0.1")
   #----------------------------------
-  CLIENT=(lester-VirtualBox)
+  CLIENT=(localhost lester-VirtualBox)
   SOURCE=(localhost)
   USER="lester@"
 fi
