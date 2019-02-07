@@ -14,4 +14,6 @@ echo "return value = $?"
 		mv server.log server.$(( 1 + $(ls | cut -d . -f 2 | sort -nr | head -1))).$(date +"%Y-%m-%d").log
 }
 
+echo "runServer: Current location: $PWD"
+
 runServer
