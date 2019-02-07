@@ -1,12 +1,12 @@
 #!/bin/bash 
 #
 #source $HOME/bin/testSuite/configfile
-source $HOME/apsiTests/configfile
+source $HOME/workspace/apsiTests/configfile
 
 runSample() {
     for trial in {1..1};
     do
-        ./runServer &
+        ssh $USER${SERVER[0]} runServer &
         ./runClient &
         sleep .5
         ./runCurl 
@@ -20,4 +20,5 @@ runSample() {
     done
 }
 
+echo "Current location: $PWD"
 runSample

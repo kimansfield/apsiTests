@@ -1,12 +1,12 @@
 #!/bin/bash 
 #
 #source $HOME/bin/testSuite/configfile
-source $HOME/apsiTests/configfile
+source $HOME/workspace/apsiTests/configfile
 
 runCurl()
 {
 	echo "Curl --socks5-hostname"
-	echo ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/$FILENAME
+	echo ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/smallfile
 	curl --socks5-hostname ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/smallfile > $HOME/tempFile #/tmp/ramdisk/blah
 }
 
