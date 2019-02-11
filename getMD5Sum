@@ -3,4 +3,4 @@
 source $HOME/workspace/apsiTests/configfile
 
 md5=`md5sum $HOME/$FILENAME | awk '{ print $1 }'`
-echo $md5 > $APSI_TESTDIR/$MD5SUM
+echo $md5 > $APSI_TESTDIR$MD5SUM
