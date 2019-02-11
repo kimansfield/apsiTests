@@ -8,6 +8,8 @@ runClient()
 {
 	echo "Running client...."
 	cd $APSI_DIR
+        echo "apsiproxy -c -i $EC2_PUBLIC -f $CLIENT_CONFIG -l client.csv"
+
 	build/$PLATFORM/apsiproxy/apsiproxy -c -i $EC2_PUBLIC -f $CLIENT_CONFIG -l client.csv
 echo "return value = $?"
 	if [ "$?" -gt "0" ]; then
