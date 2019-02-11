@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+source $HOME/workspace/apsiTests/configfile
+
+ssh $USER${TARGET[0]} $TEST_DIR/runKillAll
