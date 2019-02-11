@@ -3,6 +3,7 @@
 #source /configfile
 source $HOME/workspace/apsiTests/configfile
 
+
 echo "$FILENAME"
 
 dd if=/dev/urandom of=$FILENAME bs=1024 count=1048576
