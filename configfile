@@ -35,7 +35,7 @@ FILENAMEDEST="random1GB"
 APSI_DIR="$HOME/workspace/apsi/"
 #directory or the apsi test directory if you do a clone
 # of the test repository it is apsiTests
-APSI_TESTDIR="$HOME/apsiTests/"
+APSI_TESTDIR="$HOME/workspace/apsiTests/"
 #Home for bin files. Is this necessary? Do I want a / at the end and then change all others to not take a /? #FIXME
 BIN_DIR="$HOME"
 TEST_DIR="$BIN_DIR/workspace/apsiTests"
