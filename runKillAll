@@ -2,7 +2,7 @@
 
 #source $HOME/bin/testSuite/configfile
 #source $HOME/apsiTests/configfile
-source ./configfile
+source $HOME/workspace/apsiTests/configfile
 
 killall nc curl apsiproxy
 cd $APSI_DIR
