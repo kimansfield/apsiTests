@@ -1,9 +1,6 @@
 #!/bin/bash
 
-if [ ! -f /tmp/ramdisk]
-  echo "/tmp/ramdisk does not exist. Creating it..."
-  sudo mkdir /tmp/ramdisk
-  sudo mount -t tmpfs -o size=1280M tmpfs /tmp/ramdisk
-fi
+[ ! -f /tmp/ramdisk ] && sudo mkdir /tmp/ramdisk & sudo mount -t tmpfs -o size=1280M tmpfs /tmp/ramdisk
+
 
 
