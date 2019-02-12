@@ -7,6 +7,8 @@ runSample() {
     for trial in {1..1};
     do
         ssh $USER${SERVER[0]} workspace/apsiTests/./runServer &
+	echo "Sleep for 10 seconds to allow server to run properly"
+	sleep 10
         ./runClient &
         sleep .5
         ./runCurl 
@@ -20,5 +22,5 @@ runSample() {
     done
 }
 
-echo "Current location: $PWD"
+echo "Running sampleTest script...."
 runSample
