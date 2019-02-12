@@ -14,9 +14,10 @@ runSample() {
         ./runCurl 
         
         wait $!
+	scp $USER${SERVER[0]}:$APSI_TESTDIR$MD5SUM $APSI_TESTDIR$MD5SUM #Download targetMD5Sum in the server...
         md5check=`md5sum /tmp/ramdisk/blah | awk '{print $1}'`
         echo $md5check > $TEST_DIR/sourceMD5Sum
-        cmp sourceMD5Sum targetMD5Sum
+        cmp sourceMD5Sum $APSI_TESTDIR$MD5SUM
         echo "Done with run:" $trial
 
     done
