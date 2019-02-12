@@ -1,0 +1,11 @@
+#!/bin/bash
+
+tempFile = "/tmp/ramdisk"
+
+if [ ! -f "$tempFile"]
+  echo "$tempFile does not exist. Creating it..."
+  sudo mkdir /tmp/ramdisk
+  sudo mount -t tmpfs -o size=1280M tmpfs $tempFile
+fi
+
+
