@@ -3,16 +3,27 @@
 #source $HOME/bin/testSuite/configfile
 source $HOME/workspace/apsiTests/configfile
 
+runServer() {
+  ssh $USER${SERVER[0]} workspace/apsiTests/./runServer 
+}
+
+runClient() {
+  ./runClient
+}
+
 runSample() {
     for trial in {1..1};
     do
-        ssh $USER${SERVER[0]} workspace/apsiTests/./runServer &
+	
+        runServer >/dev/null 2>&1 & 
 	echo "Sleep for 10 seconds to allow server to run properly"
 	sleep 10
-        ./runClient &
+        runClient >/dev/null 2>&1 & 
         sleep .5
-        ./runCurl 
+        ./runCurl &
         
+	echo "Sample result: $!"
+
         wait $!
 	scp $USER${SERVER[0]}:$APSI_TESTDIR$MD5SUM $APSI_TESTDIR$MD5SUM #Download targetMD5Sum in the server...
         md5check=`md5sum /tmp/ramdisk/blah | awk '{print $1}'`
@@ -24,4 +35,5 @@ runSample() {
 }
 
 echo "Running sampleTest script...."
+
 runSample
