@@ -1,7 +1,14 @@
 #!/bin/bash 
 #
+
+# This is how to make a ramdisk
+#mkdir /tmp/ramdisk
+#sudo  mount -t tmpfs -o size=1280M tmpfs /tmp/ramdisk
+#
+
 #source $HOME/bin/testSuite/configfile
 source $HOME/workspace/apsiTests/configfile
+
 
 runServer() {
   ssh $USER${SERVER[0]} workspace/apsiTests/./runServer 
@@ -10,6 +17,16 @@ runServer() {
 runClient() {
   ./runClient
 }
+
+# Check to see if we alread have the ramdisk
+# setup
+t=`df | grep ramdisk | cut -d" " -f1`
+if [ "$t" != "tmpfs" ]; then
+mkdir /tmp/ramdisk
+sudo  mount -t tmpfs -o size=1280M tmpfs /tmp/ramdisk
+fi
+
+# This is the actual test
 
 runSample() {
     for trial in {1..1};
@@ -37,3 +54,9 @@ runSample() {
 echo "Running sampleTest script...."
 
 runSample
+
+# need to clean up the proxies and ramdisk
+./runKillAll
+
+sudo umount /tmp/ramdisk
+rm -rf /tmp/ramdisk

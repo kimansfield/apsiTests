@@ -5,8 +5,7 @@
 if [ "${KIMMACHINE:=}" ]; then
   #Array declaration with hosts.
   SERVER=(localhost)
-  TARGET=(192.168.0.5)
-  #TARGET=(192.168.0.168)
+  TARGET=("192.168.0.5" "192.168.0.5")
   #----------------------------------
   CLIENT=(localhost)
   SOURCE=(workMachine)
