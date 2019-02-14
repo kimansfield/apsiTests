@@ -11,6 +11,7 @@ rExec()
 	#echo $1
 
 	#ssh $USER$HOST < $1
+	echo "At rExec: ssh $USER$1 $APSI_TESTDIR/./$2"
 	ssh $USER$1 $APSI_TESTDIR/./$2
 }
 
