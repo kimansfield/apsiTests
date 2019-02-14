@@ -42,8 +42,11 @@ runSample() {
 	echo "Sample result: $!"
 
         wait $!
-        "Download $MD5SUM in $USER${SERVER[0]}:$APSI_TESTDIR$MD5SUM and put it in $APSI_TESTDIR$MD5SUM"
+        echo "Download $MD5SUM in $USER${SERVER[0]}:workspace/apsiTests/$MD5SUM and put it in $APSI_TESTDIR$MD5SUM"
 	scp $USER${SERVER[0]}:workspace/apsiTests/$MD5SUM $APSI_TESTDIR$MD5SUM #Download targetMD5Sum in the server...
+	echo "Check the content of $APSI_TESTDIR"
+	ls $APSI_TESTDIR
+
         md5check=`md5sum /tmp/ramdisk/blah | awk '{print $1}'`
         echo $md5check > $TEST_DIR/sourceMD5Sum
         cmp sourceMD5Sum $APSI_TESTDIR$MD5SUM
@@ -57,7 +60,7 @@ echo "Running sampleTest script...."
 runSample
 
 # need to clean up the proxies and ramdisk
-./runKillAll
+#./runKillAll
 
 sudo umount /tmp/ramdisk
 rm -rf /tmp/ramdisk
