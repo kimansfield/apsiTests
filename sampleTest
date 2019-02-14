@@ -62,5 +62,5 @@ runSample
 # need to clean up the proxies and ramdisk
 #./runKillAll
 
-sudo umount /tmp/ramdisk
-rm -rf /tmp/ramdisk
+#sudo umount /tmp/ramdisk
+#rm -rf /tmp/ramdisk
