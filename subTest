@@ -19,10 +19,12 @@ do
 	#echo "runServer..."
 	rExec ${SERVER[0]} runServer &
 	#echo "runClient..."
-	rExec ${CLIENT[0]} runClient &
+	#rExec ${CLIENT[0]} runClient &
+	./runClient &
 	sleep .5
 	#echo "runCurl..."
-	rExec ${SOURCE[0]} runCurl #>/dev/null 2>&1
+	#rExec ${SOURCE[0]} runCurl #>/dev/null 2>&1
+	./runCurl &
 
 	#HOW TO GET THIS SHIT OUT OF "RUN SCRIPT"?
 	wait $!
