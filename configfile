@@ -2,10 +2,11 @@
 
 #KIMMACHINE="1"
 
-if [ "${KIMMACHINE:=}" ]; then
+#if [ "${KIMMACHINE:=}" ]; then
+if [ "$KIMMACHINE" = "1" ]; then
   #Array declaration with hosts.
   SERVER=(localhost)
-  TARGET=("192.168.0.5" "192.168.0.5")
+  TARGET=("localhost" "192.168.0.5")
   #----------------------------------
   CLIENT=(localhost)
   SOURCE=(workMachine)

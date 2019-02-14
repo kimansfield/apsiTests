@@ -6,7 +6,7 @@ source $HOME/workspace/apsiTests/configfile
 runServer()
 {
 		cd $APSI_DIR
-		build/$PLATFORM/apsiproxy/apsiproxy -s -f $SERVER_CONFIG -l server.csv
+		build/$PLATFORM/apsiproxy/apsiproxy -s -f $SERVER_CONFIG -l server.cfg
 echo "return value = $?"
 	if [ "$?" -gt "0" ]; then
 		exit 1
