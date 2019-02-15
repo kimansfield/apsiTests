@@ -40,7 +40,7 @@ do
 	cmp $BIN_DIR/blahcmp $APSI_TESTDIR$MD5SUM
 	echo "Done with run:" $trial
 	cleanup
-	wait
+	#wait
 	COUNT=$((COUNT+1))
 done
 ssh $USER${TARGET[0]} -t $APSITEST_DIR/./stopApache
