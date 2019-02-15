@@ -40,9 +40,22 @@ cleanup
 exit $?
 }
 
+createRamDisk()
+{
+  t=`df | grep ramdisk | cut -d" " -f1`
+  if [ "$t" != "tmpfs" ]; then
+  mkdir /tmp/ramdisk
+  sudo  mount -t tmpfs -o size=1280M tmpfs /tmp/ramdisk
+  fi	
+}
+
 trap control_c SIGINT
 #test_setup baluchitherium
 wait
 export -f rExec
 export -f cleanup
+
+
+createRamDisk
+
 . $TEST_DIR/subTest
