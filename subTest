@@ -43,4 +43,4 @@ do
 	#wait
 	COUNT=$((COUNT+1))
 done
-ssh $USER${TARGET[0]} -t $APSITEST_DIR/./stopApache
+ssh $USER${TARGET[0]} workspace/apsiTests/./stopApache
