@@ -34,6 +34,6 @@ echo "bug #22 test complete"
 
 #done
 
-./runKillAll >/dev/null
+#./runKillAll >/dev/null
 
 exit 0

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+[ ! -f /tmp/ramdisk ] && sudo mkdir /tmp/ramdisk & sudo mount -t tmpfs -o size=1280M tmpfs /tmp/ramdisk
+
+
+

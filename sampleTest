@@ -1,24 +1,66 @@
 #!/bin/bash 
 #
+
+# This is how to make a ramdisk
+#mkdir /tmp/ramdisk
+#sudo  mount -t tmpfs -o size=1280M tmpfs /tmp/ramdisk
+#
+
 #source $HOME/bin/testSuite/configfile
 source $HOME/workspace/apsiTests/configfile
+
+
+runServer() {
+  ssh $USER${SERVER[0]} workspace/apsiTests/./runServer 
+}
+
+runClient() {
+  ./runClient
+}
+
+# Check to see if we alread have the ramdisk
+# setup
+t=`df | grep ramdisk | cut -d" " -f1`
+if [ "$t" != "tmpfs" ]; then
+mkdir /tmp/ramdisk
+sudo  mount -t tmpfs -o size=1280M tmpfs /tmp/ramdisk
+fi
+
+# This is the actual test
 
 runSample() {
     for trial in {1..1};
     do
-        ssh $USER${SERVER[0]} workspace/apsiTests/./runServer &
-        ./runClient &
+	
+        runServer >/dev/null 2>&1 & 
+	echo "Sleep for 10 seconds to allow server to run properly"
+	sleep 10
+        runClient >/dev/null 2>&1 & 
         sleep .5
-        ./runCurl 
+        ./runCurl &
         
+	echo "Sample result: $!"
+
         wait $!
+        echo "Download $MD5SUM in $USER${SERVER[0]}:workspace/apsiTests/$MD5SUM and put it in $APSI_TESTDIR$MD5SUM"
+	scp $USER${SERVER[0]}:workspace/apsiTests/$MD5SUM $APSI_TESTDIR$MD5SUM #Download targetMD5Sum in the server...
+	echo "Check the content of $APSI_TESTDIR"
+	ls $APSI_TESTDIR
+
         md5check=`md5sum /tmp/ramdisk/blah | awk '{print $1}'`
         echo $md5check > $TEST_DIR/sourceMD5Sum
-        cmp sourceMD5Sum targetMD5Sum
+        cmp sourceMD5Sum $APSI_TESTDIR$MD5SUM
         echo "Done with run:" $trial
 
     done
 }
 
-echo "Current location: $PWD"
+echo "Running sampleTest script...."
+
 runSample
+
+# need to clean up the proxies and ramdisk
+#./runKillAll
+
+#sudo umount /tmp/ramdisk
+#rm -rf /tmp/ramdisk

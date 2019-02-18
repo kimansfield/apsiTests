@@ -6,8 +6,8 @@ source $HOME/workspace/apsiTests/configfile
 runCurl()
 {
 	echo "Curl --socks5-hostname"
-	echo ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/smallfile
-	curl --socks5-hostname ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/smallfile > /tmp/ramdisk/blah
+	echo ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/$FILENAME
+	curl --socks5-hostname ${CLIENT[0]}:1080 ${TARGET[0]}:80/$LOCATION/$FILENAME > /tmp/ramdisk/blah
 }
 
 runCurl

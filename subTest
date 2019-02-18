@@ -17,23 +17,30 @@ sendLogs()
 for trial in {1..1};
 do
 	#echo "runServer..."
-	rExec ${SERVER[0]} runServer &
+	rExec ${SERVER[0]} runServer >/dev/null 2>&1 & 
 	#echo "runClient..."
-	rExec ${CLIENT[0]} runClient &
+	#rExec ${CLIENT[0]} runClient &
+	./runClient >/dev/null 2>&1 & 
 	sleep .5
 	#echo "runCurl..."
-	rExec ${SOURCE[0]} runCurl #>/dev/null 2>&1
+	#rExec ${SOURCE[0]} runCurl #>/dev/null 2>&1
+	./runCurl &
 
 	#HOW TO GET THIS SHIT OUT OF "RUN SCRIPT"?
 	wait $!
+	echo "Download $MD5SUM in $USER${SERVER[0]}:workspace/apsiTests/$MD5SUM and put it in $APSI_TESTDIR$MD5SUM"
+	scp $USER${SERVER[0]}:workspace/apsiTests/$MD5SUM $APSI_TESTDIR$MD5SUM #Download targetMD5Sum in the server...
+	echo "Check the content of $APSI_TESTDIR"
+	ls $APSI_TESTDIR
+
 	sendLogs ${SERVER[0]} >/dev/null 2>&1
 	sendLogs ${CLIENT[0]} >/dev/null 2>&1
-	md5check=`md5sum $BIN_DIR/blah | awk '{print $1}'`
+	md5check=`md5sum /tmp/ramdisk/blah | awk '{print $1}'`
 	echo $md5check > $BIN_DIR/blahcmp
-	cmp blahcmp targetMD5Sum
+	cmp $BIN_DIR/blahcmp $APSI_TESTDIR$MD5SUM
 	echo "Done with run:" $trial
 	cleanup
-	wait
+	#wait
 	COUNT=$((COUNT+1))
 done
-ssh $USER${TARGET[0]} -t $APSITEST_DIR/./stopApache
+#ssh $USER${TARGET[0]} workspace/apsiTests/./stopApache
