@@ -1,5 +1,14 @@
 #!/bin/bash
 
+source $HOME/apsiTests/configfile
+
+echo "runServer..."
+rExec ${SERVER[0]} runServer >/dev/null 2>&1 & 
+echo "runClient..."
+rExec ${CLIENT[0]} runClient &
+./runClient >/dev/null 2>&1 & 
+sleep .5
+
 for i in {1..10}; do
 	echo "Hostname:"
 	echo $1
