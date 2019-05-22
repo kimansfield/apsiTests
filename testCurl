@@ -2,6 +2,16 @@
 
 source $HOME/apsiTests/configfile
 
+rExec()
+{
+	#echo "rExec: "
+	#echo $1
+
+	#ssh $USER$HOST < $1
+	echo "At rExec: ssh $USER$1 workspace/apsiTests/./$2"
+	ssh $USER$1 workspace/apsiTests/./$2
+}
+
 echo "runServer..."
 rExec ${SERVER[0]} runServer >/dev/null 2>&1 & 
 echo "runClient..."
