@@ -16,7 +16,8 @@ for x in ${symbolSize[*]}; do
 		echo "symbols: ${y} symbolSize: ${x}"
 		for i in {1..8}; do
 		echo "Trial ${i}"
-		build/apsiproxy/apsiproxy -c -i 52.53.163.245 -f apsi.cfg 
+		#build/apsiproxy/apsiproxy -c -i 52.53.163.245 -f apsi.cfg 
+		build/$PLATFORM/apsiproxy/apsiproxy -c -i $EC2_PUBLIC -f $CLIENT_CONFIG -l apsi.cfg 
 		echo "Press [ENTER] to continue..."
 		read -p "$*"
 		mv clientlog clientlog_s${y}_ss${x}_trial${i}.log
