@@ -12,11 +12,12 @@ rExec()
 	ssh $USER$1 workspace/apsiTests/./$2
 }
 
-echo "runServer..."
-rExec ${SERVER[0]} runServer >/dev/null 2>&1 & 
-echo "runClient..."
-rExec ${CLIENT[0]} runClient &
-./runClient >/dev/null 2>&1 & 
+#echo "runServer..."
+#rExec ${SERVER[0]} runServer >/dev/null 2>&1 & 
+#echo "runClient..."
+#rExec ${CLIENT[0]} runClient &
+#./runClient >/dev/null 2>&1 &
+ 
 sleep .5
 
 for i in {1..10}; do
