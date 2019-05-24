@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $HOME/workspace/apsiTests/configfile
+
 declare -a symbols=(3 8 13 25)
 declare -a symbolSize=(500 1000 1400)
 control_c() {
