@@ -44,7 +44,7 @@ for x in ${symbolSize[*]}; do
 done
 
 echo "Listing session..."
-byobu list-session
+tmux ls
 echo "Done listing."
 byobu kill-session -t $SESSION
 
