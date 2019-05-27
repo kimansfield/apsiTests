@@ -1,11 +1,11 @@
 #!/bin/bash
 
-SESSION=$USER
+SESSION="BYOBUTEST"
 # -2: forces 256 colors
 byobu-tmux -2 new-session -d -s $SESSION
 
 #window 0
-byobu-tmux -2 new-session -d -s $SESSION
+#byobu-tmux -2 new-session -d -s $SESSION
 byobu-tmux rename-window -t $SESSION:0 'InitialWindow'
 
 for i in {1..2};
