@@ -42,3 +42,7 @@ for x in ${symbolSize[*]}; do
 		done
 	done	
 done
+
+byobu list-session
+byobu kill-session -t $SESSION
+
