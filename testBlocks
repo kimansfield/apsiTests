@@ -43,6 +43,8 @@ for x in ${symbolSize[*]}; do
 	done	
 done
 
+echo "Listing session..."
 byobu list-session
+echo "Done listing."
 byobu kill-session -t $SESSION
 
