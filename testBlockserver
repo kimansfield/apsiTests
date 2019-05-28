@@ -1,4 +1,5 @@
 #!/bin/bash
+source $HOME/workspace/apsiTests/configfile
 
 declare -a symbols=(3 8 13 25)
 declare -a symbolSize=(500 1000 1400)
@@ -19,15 +20,15 @@ byobu-tmux rename-window -t $SESSION:0 'InitialWindow'
 
 for x in ${symbolSize[*]}; do
 	for y in ${symbols[*]}; do
-		perl -pi -e "s/symbols = .*/symbols = ${y}/g" apsiserver.cfg
-		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" apsiserver.cfg
+		perl -pi -e "s/symbols = .*/symbols = ${y}/g" $APSI_TESTDIR/apsiserver.cfg
+		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" $APSI_TESTDIR/apsiserver.cfg
 		sleep 1 
 		echo "symbols: ${y} symbolSize: ${x}"
 		for i in {1..8}; do
 		echo "Trial ${i}"
 		#build/apsiproxy/apsiproxy -s -f apsiserver.cfg 
 		byobu-tmux new-window -t $SESSION:$COUNTER -n "Client${COUNTER}"
-		byobu-tmux send-keys "$APSI_DIR/build/$PLATFORM/apsiproxy/apsiproxy -s -f apsiserver.cfg" C-m 
+		byobu-tmux send-keys "$APSI_DIR/build/$PLATFORM/apsiproxy/apsiproxy -s -f $APSI_TESTDIR/apsiserver.cfg" C-m 
 		
 		COUNTER=$((COUNTER+1))
 		echo "Press [ENTER] to continue..."
