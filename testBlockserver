@@ -20,6 +20,7 @@ byobu-tmux rename-window -t $SESSION:0 'InitialWindow'
 
 for x in ${symbolSize[*]}; do
 	for y in ${symbols[*]}; do
+		echo "APSI Test dir: $APSI_TESTDIR/apsiserver.cfg"
 		perl -pi -e "s/symbols = .*/symbols = ${y}/g" $APSI_TESTDIR/apsiserver.cfg
 		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" $APSI_TESTDIR/apsiserver.cfg
 		sleep 1 
