@@ -16,3 +16,14 @@ byobu-tmux new-window -t $SESSION:$i -n "Client${i}"
 byobu-tmux send-keys "echo 'hello from client ${i}'"
 
 done
+
+
+echo "At testbyobu: Listing session..."
+tmux ls
+echo "At testbyobu: Done listing."
+echo "At testbyobu: Killing session run..."
+tmux kill-session -t $SESSION
+echo "At testbyobu: Test if killed:"
+tmux ls
+echo "At testbyobu: Done killing.."
+
