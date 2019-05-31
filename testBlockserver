@@ -27,9 +27,9 @@ byobu-tmux rename-window -t $SESSION:0 'InitialWindow'
 
 for x in ${symbolSize[*]}; do
 	for y in ${symbols[*]}; do
-		echo "APSI Test dir: $APSI_TESTDIR/apsiserver.cfg"
-		perl -pi -e "s/symbols = .*/symbols = ${y}/g" $APSI_TESTDIR/apsiserver.cfg
-		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" $APSI_TESTDIR/apsiserver.cfg
+		echo "APSI Test dir: $APSI_TESTDIR/apsiproxy.cfg"
+		perl -pi -e "s/symbols = .*/symbols = ${y}/g" $APSI_TESTDIR/apsiproxy.cfg
+		perl -pi -e "s/symbolSize = .*/symbolSize = ${x}/g" $APSI_TESTDIR/apsiproxy.cfg
 		sleep 1 
 		echo "symbols: ${y} symbolSize: ${x}"
 		for i in {1..8}; do
@@ -39,7 +39,7 @@ for x in ${symbolSize[*]}; do
 		#byobu-tmux send-keys "$APSI_DIR/build/$PLATFORM/apsiproxy/apsiproxy -s -f $APSI_TESTDIR/apsiserver.cfg" C-m 
 
 		byobu-tmux new-window -t $SESSION:$3 -n "Client${3}"
-		byobu-tmux send-keys "ssh $USER${SERVER[0]} workspace/apsi/build/$PLATFORM/apsiproxy/apsiproxy -s -f workspace/apsiTests/apsiserver.cfg" C-m 
+		byobu-tmux send-keys "ssh $USER${SERVER[0]} workspace/apsi/build/$PLATFORM/apsiproxy/apsiproxy -s -f workspace/apsiTests/apsiproxy.cfg" C-m 
 
 		COUNTER=$((COUNTER+1))
 		echo "Press [ENTER] to continue..."
