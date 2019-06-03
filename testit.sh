@@ -1,4 +1,5 @@
 #!/bin/sh
+source $HOME/workspace/apsiTests/configfile
 
 echo 'Hello World'
 
