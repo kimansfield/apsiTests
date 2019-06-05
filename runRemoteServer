@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source $HOME/workspace/apsiTests/configfile
+
+ssh $USER${SERVER[0]} workspace/apsiTests/./runServer >/dev/null 2>&1 &

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $HOME/workspace/apsiTests/configfile
+
 declare -a symbols=(3 8 13 25)
 declare -a symbolSize=(500 1000 1400)
 control_c() {
@@ -7,6 +9,16 @@ echo "caught"
 killall apsiproxy
 }
 trap control_c SIGINT
+
+SESSION=$USER
+COUNTER=0
+
+# -2: forces 256 colors
+byobu-tmux -2 new-session -d -s $SESSION
+
+#window 0
+#byobu-tmux -2 new-session -d -s $SESSION
+byobu-tmux rename-window -t $SESSION:0 'InitialWindow'
 
 for x in ${symbolSize[*]}; do
 	for y in ${symbols[*]}; do
@@ -16,7 +28,12 @@ for x in ${symbolSize[*]}; do
 		echo "symbols: ${y} symbolSize: ${x}"
 		for i in {1..8}; do
 		echo "Trial ${i}"
-		build/apsiproxy/apsiproxy -c -i 52.53.163.245 -f apsi.cfg 
+		#build/apsiproxy/apsiproxy -c -i 52.53.163.245 -f apsi.cfg
+		byobu-tmux new-window -t $SESSION:$COUNTER -n "Client${COUNTER}"
+		byobu-tmux send-keys "$APSI_DIR/build/$PLATFORM/apsiproxy/apsiproxy -c -i $EC2_PUBLIC -f $CLIENT_CONFIG -l apsi.cfg" C-m 
+		
+		COUNTER=$((COUNTER+1))
+
 		echo "Press [ENTER] to continue..."
 		read -p "$*"
 		mv clientlog clientlog_s${y}_ss${x}_trial${i}.log
@@ -25,3 +42,14 @@ for x in ${symbolSize[*]}; do
 		done
 	done	
 done
+
+echo "Listing session..."
+tmux ls
+echo "Done listing."
+echo "Killing session..."
+tmux kill-session -t $SESSION
+echo "Test if killed:"
+tmux ls
+echo "Done killing.."
+
+
